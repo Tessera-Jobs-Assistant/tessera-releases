@@ -1,0 +1,9 @@
+{
+  "queues": [
+    "apply",
+    "comms",
+    "curation",
+    "pipeline",
+    "research"
+  ]
+}
