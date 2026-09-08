@@ -27,7 +27,7 @@ export type RoundKind = 'recruiter_screen' | 'phone_screen' | 'hiring_manager' |
 export type RubricSource = 'tessera_core' | 'reconstructed' | 'official' | 'user';
 export type RoleFunction = 'engineering' | 'product' | 'design' | 'data' | 'research' | 'sales' | 'marketing' | 'customer_success' | 'finance' | 'operations' | 'people' | 'legal' | 'medicine' | 'education' | 'creative';
 export type SearchStatus = 'active' | 'open' | 'passive' | 'paused';
-export type OnboardingStep = 'account' | 'preferences' | 'experience' | 'interview' | 'tour';
+export type OnboardingStep = 'account' | 'preferences' | 'connections' | 'experience' | 'interview' | 'tour';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -40,7 +40,7 @@ export const FUNCTIONS: RoleFunction[] = ["engineering", "product", "design", "d
 // The onboarding flow, in the order both clients walk it, and the four words a
 // person can pick for where they are in the search. The labels are here so the
 // phone and the desktop offer the same four rather than each writing its own.
-export const ONBOARDING_STEPS: OnboardingStep[] = ["account", "preferences", "experience", "interview", "tour"];
+export const ONBOARDING_STEPS: OnboardingStep[] = ["account", "preferences", "connections", "experience", "interview", "tour"];
 export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "paused"];
 export const SEARCH_STATUS_LABELS: Record<SearchStatus, string> = {
   "active": "Actively looking",
