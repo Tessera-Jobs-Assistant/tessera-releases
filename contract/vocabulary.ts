@@ -28,7 +28,7 @@ export type RubricSource = 'tessera_core' | 'reconstructed' | 'official' | 'user
 export type RoleFunction = 'engineering' | 'product' | 'design' | 'data' | 'research' | 'sales' | 'marketing' | 'customer_success' | 'finance' | 'operations' | 'people' | 'legal' | 'medicine' | 'education' | 'creative';
 export type SearchStatus = 'active' | 'open' | 'passive' | 'paused';
 export type OnboardingStep = 'account' | 'preferences' | 'connections' | 'experience' | 'interview' | 'tour';
-export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets';
+export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge';
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
@@ -46,7 +46,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = ["account", "preferences", "co
 export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "paused"];
 // Work that outlives the request: a client polls /tasks/{id} and renders the
 // status. These are the kinds it can ask for and the words it will see.
-export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets"];
+export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge"];
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
 export const SEARCH_STATUS_LABELS: Record<SearchStatus, string> = {
   "active": "Actively looking",
