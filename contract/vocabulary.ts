@@ -11,6 +11,8 @@
 
 export type CoreSignal = 'Ownership and results' | 'Leadership and influence' | 'Conflict and disagreement' | 'Ambiguity and judgment' | 'Learning and growth' | 'Communication' | 'Collaboration' | 'Customer and user focus' | 'Technical depth';
 export type StoryState = 'draft' | 'rehearsed' | 'battle_tested';
+export type StoryReviewState = 'suggested' | 'accepted' | 'rejected';
+export type StorySuggestionState = 'pending' | 'accepted' | 'edited' | 'rejected' | 'withdrawn';
 export type StoryVariant = 's30' | 'm2' | 'm5';
 export type TellingOutcome = 'landed' | 'missed' | 'unclear';
 export type DebriefWriteState = 'proposed' | 'accepted' | 'vetoed';
@@ -35,6 +37,10 @@ export type KindBasis = 'stated' | 'read' | 'guessed';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
+// A story the system proposed is `suggested` until the person decides. Kept apart
+// from StoryState, which is earned by telling and never set by saying yes.
+export const STORY_REVIEW_STATES: StoryReviewState[] = ["suggested", "accepted", "rejected"];
+export const STORY_SUGGESTION_STATES: StorySuggestionState[] = ["pending", "accepted", "edited", "rejected", "withdrawn"];
 export const DEBRIEF_WRITE_STATES: DebriefWriteState[] = ["proposed", "accepted", "vetoed"];
 export const LADDERS: Ladder[] = ["ic", "manager", "executive"];
 export const SENIORITY: Seniority[] = ["junior", "mid", "senior", "staff", "principal", "director", "vp_plus"];
