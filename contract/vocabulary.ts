@@ -28,8 +28,10 @@ export type RubricSource = 'tessera_core' | 'reconstructed' | 'official' | 'user
 export type RoleFunction = 'engineering' | 'product' | 'design' | 'data' | 'research' | 'sales' | 'marketing' | 'customer_success' | 'finance' | 'operations' | 'people' | 'legal' | 'medicine' | 'education' | 'creative';
 export type SearchStatus = 'active' | 'open' | 'passive' | 'paused';
 export type OnboardingStep = 'account' | 'preferences' | 'connections' | 'experience' | 'interview' | 'tour';
-export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge';
+export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge' | 'record_sort';
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
+export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'other';
+export type KindBasis = 'stated' | 'read' | 'guessed';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -46,8 +48,35 @@ export const ONBOARDING_STEPS: OnboardingStep[] = ["account", "preferences", "co
 export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "paused"];
 // Work that outlives the request: a client polls /tasks/{id} and renders the
 // status. These are the kinds it can ask for and the words it will see.
-export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge"];
+export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort"];
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
+// The sections of the record, in the order both clients show them. The person
+// named six; `other` holds talks, panels and awards, which are none of them.
+export const EVENT_KINDS: EventKind[] = ["work", "volunteer", "project", "board_advisory", "education", "research", "other"];
+export const EVENT_KIND_LABELS: Record<EventKind, string> = {
+  "work": "Work Experience",
+  "volunteer": "Volunteer",
+  "project": "Projects",
+  "board_advisory": "Board & Advisory",
+  "education": "Education",
+  "research": "Research",
+  "other": "Other"
+};
+export const EVENT_KIND_HINTS: Record<EventKind, string> = {
+  "work": "Work you were paid for, founding a company included.",
+  "volunteer": "Unpaid work for a cause, a community or an event.",
+  "project": "Side projects: things you built or ran outside a job.",
+  "board_advisory": "Board seats, advisory roles, trusteeships.",
+  "education": "Degrees, diplomas, certificates and courses.",
+  "research": "Academic research, papers, theses, lab work.",
+  "other": "Talks, panels, awards, anything none of the above fits."
+};
+// How an entry came to be filed: the person said so, something read it from
+// their material, or nobody has evidence yet. A client marks `guessed` as a guess.
+export const KIND_BASES: KindBasis[] = ["stated", "read", "guessed"];
+export function eventKindLabel(kind: string): string {
+  return (EVENT_KIND_LABELS as Record<string, string>)[kind] ?? kind.replace(/_/g, ' ');
+}
 export const SEARCH_STATUS_LABELS: Record<SearchStatus, string> = {
   "active": "Actively looking",
   "open": "Open to the right thing",
