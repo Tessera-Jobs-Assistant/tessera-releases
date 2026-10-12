@@ -34,6 +34,8 @@ export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_tar
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
 export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'speaking' | 'press' | 'awards' | 'other';
 export type KindBasis = 'stated' | 'read' | 'guessed';
+export type TargetState = 'looking' | 'reading' | 'found_unreadable' | 'not_found';
+export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -56,6 +58,49 @@ export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "pa
 // status. These are the kinds it can ask for and the words it will see.
 export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort"];
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
+// Where a company the person is aiming at stands: still looking, reading its
+// board directly, found a careers page that cannot be read, or found nothing.
+// Each has a short label for the chip and a sentence that says what it means.
+export const TARGET_STATES: TargetState[] = ["looking", "reading", "found_unreadable", "not_found"];
+export const TARGET_STATE_LABELS: Record<TargetState, string> = {
+  "looking": "Looking for their board",
+  "reading": "Reading their board directly",
+  "found_unreadable": "Careers page found, can't read it yet",
+  "not_found": "Couldn't find where they post"
+};
+export const TARGET_STATE_MEANINGS: Record<TargetState, string> = {
+  "looking": "I'm working out where they post roles. It takes a few seconds a company.",
+  "reading": "Their roles come straight off their own job board, so nothing they post slips past.",
+  "found_unreadable": "I found their careers page, but it has no feed I can read automatically. I still look for their roles through search.",
+  "not_found": "I couldn't find where they post roles. Point me to their careers page and I'll read it if I can."
+};
+// The boards read directly, and every system named on screen, readable or not.
+export const BOARD_KINDS: BoardKind[] = ["greenhouse", "lever", "ashby", "workday", "eightfold", "jibe", "smartrecruiters", "workable", "recruitee"];
+export const BOARD_LABELS: Record<string, string> = {
+  "greenhouse": "Greenhouse",
+  "lever": "Lever",
+  "ashby": "Ashby",
+  "workday": "Workday",
+  "eightfold": "Eightfold",
+  "jibe": "iCIMS",
+  "smartrecruiters": "SmartRecruiters",
+  "workable": "Workable",
+  "recruitee": "Recruitee",
+  "icims": "iCIMS",
+  "taleo": "Taleo",
+  "successfactors": "SuccessFactors",
+  "oracle": "Oracle Recruiting",
+  "jobvite": "Jobvite",
+  "phenom": "Phenom",
+  "avature": "Avature",
+  "bamboohr": "BambooHR",
+  "teamtailor": "Teamtailor",
+  "personio": "Personio",
+  "own": "their own site"
+};
+export function targetStateOf(state: string | undefined): TargetState {
+  return (TARGET_STATES as string[]).includes(state ?? '') ? (state as TargetState) : 'looking';
+}
 // The sections of the record, in the order both clients show them. The person
 // named six; `other` holds talks, panels and awards, which are none of them.
 export const EVENT_KINDS: EventKind[] = ["work", "volunteer", "project", "board_advisory", "education", "research", "speaking", "press", "awards", "other"];
