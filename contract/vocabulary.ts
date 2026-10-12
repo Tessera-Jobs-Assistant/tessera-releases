@@ -32,7 +32,7 @@ export type SearchStatus = 'active' | 'open' | 'passive' | 'paused';
 export type OnboardingStep = 'account' | 'preferences' | 'connections' | 'experience' | 'interview' | 'tour';
 export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge' | 'record_sort';
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
-export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'other';
+export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'speaking' | 'press' | 'awards' | 'other';
 export type KindBasis = 'stated' | 'read' | 'guessed';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
@@ -58,7 +58,7 @@ export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import",
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
 // The sections of the record, in the order both clients show them. The person
 // named six; `other` holds talks, panels and awards, which are none of them.
-export const EVENT_KINDS: EventKind[] = ["work", "volunteer", "project", "board_advisory", "education", "research", "other"];
+export const EVENT_KINDS: EventKind[] = ["work", "volunteer", "project", "board_advisory", "education", "research", "speaking", "press", "awards", "other"];
 export const EVENT_KIND_LABELS: Record<EventKind, string> = {
   "work": "Work Experience",
   "volunteer": "Volunteer",
@@ -66,6 +66,9 @@ export const EVENT_KIND_LABELS: Record<EventKind, string> = {
   "board_advisory": "Board & Advisory",
   "education": "Education",
   "research": "Research",
+  "speaking": "Speaking & Panels",
+  "press": "Press & Media",
+  "awards": "Awards & Recognition",
   "other": "Other"
 };
 export const EVENT_KIND_HINTS: Record<EventKind, string> = {
@@ -75,7 +78,10 @@ export const EVENT_KIND_HINTS: Record<EventKind, string> = {
   "board_advisory": "Board seats, advisory roles, trusteeships.",
   "education": "Degrees, diplomas, certificates and courses.",
   "research": "Academic research, papers, theses, lab work.",
-  "other": "Talks, panels, awards, anything none of the above fits."
+  "speaking": "Talks, keynotes, panels, moderating, judging.",
+  "press": "Features, interviews, podcasts and pieces about or by you.",
+  "awards": "Awards, prizes, honours and lists you were named to.",
+  "other": "Anything none of the above fits."
 };
 // How an entry came to be filed: the person said so, something read it from
 // their material, or nobody has evidence yet. A client marks `guessed` as a guess.
