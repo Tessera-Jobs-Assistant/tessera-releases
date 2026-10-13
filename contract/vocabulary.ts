@@ -35,6 +35,7 @@ export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
 export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'speaking' | 'press' | 'awards' | 'other';
 export type KindBasis = 'stated' | 'read' | 'guessed';
 export type TargetState = 'looking' | 'reading' | 'reading_page' | 'found_unreadable' | 'not_found';
+export type MailHealthState = 'ok' | 'expiring' | 'lapsed' | 'none';
 export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee' | 'google' | 'apple' | 'amazon' | 'phenom' | 'oracle' | 'teamtailor' | 'personio' | 'jsonld' | 'sitemap' | 'rendered';
 export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'closed' | 'muted';
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
@@ -66,6 +67,8 @@ export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "pa
 // status. These are the kinds it can ask for and the words it will see.
 export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort", "mail_reassess", "record_intake"];
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
+// Whether the mailbox is still being read. The app warns on expiring and lapsed.
+export const MAIL_HEALTH_STATES: MailHealthState[] = ["ok", "expiring", "lapsed", "none"];
 // Where a company the person is aiming at stands: still looking, reading its
 // board directly, found a careers page that cannot be read, or found nothing.
 // Each has a short label for the chip and a sentence that says what it means.
