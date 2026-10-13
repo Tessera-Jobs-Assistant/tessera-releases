@@ -47,6 +47,8 @@ export type ChangeKind = 'new_entry' | 'entry_fill' | 'new_claim' | 'receipt' | 
 export type ChangeState = 'pending' | 'applied' | 'kept' | 'both' | 'edited' | 'dismissed' | 'stale';
 export type Resolution = 'current' | 'incoming' | 'both' | 'edit';
 export type DecidedVia = 'one' | 'additions' | 'suggested' | 'closed';
+export type SeniorityBand = 'junior_ic' | 'ic' | 'staff' | 'manager' | 'director' | 'vp' | 'svp' | 'c';
+export type Screen = 'today' | 'jobs' | 'pipeline' | 'inbox' | 'coach' | 'experience' | 'resume' | 'stories' | 'growth' | 'preferences' | 'interviews' | 'loops' | 'questions' | 'progress' | 'settings';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -225,6 +227,37 @@ export const SEARCH_STATUS_LABELS: Record<SearchStatus, string> = {
   "open": "Open to the right thing",
   "passive": "Not looking, keep an eye out",
   "paused": "Paused"
+};
+// The band a person is looking within, low to high, and what each is called.
+// The order is a contract: a band's bottom cannot sit above its top.
+export const SENIORITY_BANDS: SeniorityBand[] = ["junior_ic", "ic", "staff", "manager", "director", "vp", "svp", "c"];
+export const SENIORITY_BAND_LABELS: Record<SeniorityBand, string> = {
+  "junior_ic": "Junior IC",
+  "ic": "Senior IC",
+  "staff": "Staff / Principal",
+  "manager": "Manager",
+  "director": "Director",
+  "vp": "VP",
+  "svp": "SVP",
+  "c": "C-level"
+};
+// What each screen is called, on both clients. One name per screen.
+export const SCREEN_LABELS: Record<Screen, string> = {
+  "today": "Today",
+  "jobs": "Jobs",
+  "pipeline": "Pipeline",
+  "inbox": "Inbox",
+  "coach": "Coach",
+  "experience": "Experience",
+  "resume": "Résumé",
+  "stories": "Stories",
+  "growth": "Growth",
+  "preferences": "Search preferences",
+  "interviews": "Interviews",
+  "loops": "Loops",
+  "questions": "Questions",
+  "progress": "Progress",
+  "settings": "Settings"
 };
 export const FUNCTION_LABELS: Record<string, string> = {
   "engineering": "Engineering",
