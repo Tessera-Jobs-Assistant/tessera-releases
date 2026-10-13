@@ -39,6 +39,8 @@ export type MailHealthState = 'ok' | 'expiring' | 'lapsed' | 'none';
 export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee' | 'google' | 'apple' | 'amazon' | 'phenom' | 'oracle' | 'teamtailor' | 'personio' | 'jsonld' | 'sitemap' | 'rendered';
 export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'gone_quiet' | 'closed' | 'muted';
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
+export type JobReviewState = 'unconfirmed' | 'dismissed' | 'archived';
+export type JobOrigin = 'scout' | 'email_alert' | 'email_recruiter' | 'suggested' | 'manual' | 'imported';
 export type LlmFailureReason = 'rate_limited' | 'unavailable' | 'timeout' | 'refused' | 'truncated' | 'bad_request' | 'unreadable' | 'not_configured' | 'budget';
 export type SourceKind = 'resume' | 'material' | 'decide';
 export type SourceState = 'read' | 'thin' | 'unreadable';
@@ -150,6 +152,35 @@ export const REFINE_PRESET_LABELS: Record<RefinePreset, string> = {
   "decline": "Decline politely",
   "ask_details": "Ask for details"
 };
+// Where a job stands when it is not simply on the list (""): waiting in review,
+// said no to, or taken off by a recheck.
+export const JOB_REVIEW_STATES: JobReviewState[] = ["unconfirmed", "dismissed", "archived"];
+export const JOB_REVIEW_LABELS: Record<JobReviewState, string> = {
+  "unconfirmed": "To review",
+  "dismissed": "You said no",
+  "archived": "Taken off after a recheck"
+};
+// Where a job came from, as the Jobs filter names each source. Those in
+// JOB_ORIGINS_REVIEWED_FIRST wait in review before reaching the list; what the
+// person added themselves goes straight on.
+export const JOB_ORIGINS: JobOrigin[] = ["scout", "email_alert", "email_recruiter", "suggested", "manual", "imported"];
+export const JOB_ORIGIN_LABELS: Record<JobOrigin, string> = {
+  "scout": "Scout",
+  "email_alert": "Email: alerts and lists",
+  "email_recruiter": "Email: recruiters",
+  "suggested": "Suggested",
+  "manual": "Added by you",
+  "imported": "Imported"
+};
+export const JOB_ORIGIN_MEANINGS: Record<JobOrigin, string> = {
+  "scout": "Found by the scout, on a company's board, Hacker News or a job site.",
+  "email_alert": "Named in a job alert, a job site's suggestions or a recruiter's mailing list.",
+  "email_recruiter": "Someone wrote to you about it.",
+  "suggested": "Adjacent to what you asked for.",
+  "manual": "You added it: a link, a pasted posting, a file, or tracked from your inbox.",
+  "imported": "From a spreadsheet you imported."
+};
+export const JOB_ORIGINS_REVIEWED_FIRST: JobOrigin[] = ["scout", "email_alert", "email_recruiter", "suggested"];
 // The `reason` on a 503 from an endpoint that needed a language model, and on
 // `unavailable` where a reply says the model did not answer. The 503's `detail` is
 // the sentence to show. `budget` and `not_configured` do not clear by retrying.
