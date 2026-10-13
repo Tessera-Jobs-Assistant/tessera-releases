@@ -56,7 +56,7 @@ export type EquityKind = 'none' | 'rsu' | 'options' | 'other';
 export type ReminderKind = 'custom' | 'follow_up';
 export type AgendaKind = 'interview' | 'offer_deadline' | 'reminder';
 export type SeniorityBand = 'junior_ic' | 'ic' | 'staff' | 'manager' | 'director' | 'vp' | 'svp' | 'c';
-export type Screen = 'today' | 'jobs' | 'pipeline' | 'inbox' | 'coach' | 'experience' | 'resume' | 'stories' | 'growth' | 'preferences' | 'interviews' | 'loops' | 'questions' | 'progress' | 'settings';
+export type Screen = 'today' | 'jobs' | 'pipeline' | 'inbox' | 'coach' | 'experience' | 'resume' | 'stories' | 'growth' | 'preferences' | 'processes' | 'documents' | 'interviews' | 'loops' | 'questions' | 'progress' | 'settings';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -322,6 +322,8 @@ export const SCREEN_LABELS: Record<Screen, string> = {
   "stories": "Stories",
   "growth": "Growth",
   "preferences": "Search preferences",
+  "processes": "Processes",
+  "documents": "Documents",
   "interviews": "Interviews",
   "loops": "Loops",
   "questions": "Questions",
