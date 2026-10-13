@@ -34,8 +34,8 @@ export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_tar
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
 export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'speaking' | 'press' | 'awards' | 'other';
 export type KindBasis = 'stated' | 'read' | 'guessed';
-export type TargetState = 'looking' | 'reading' | 'found_unreadable' | 'not_found';
-export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee';
+export type TargetState = 'looking' | 'reading' | 'reading_page' | 'found_unreadable' | 'not_found';
+export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee' | 'google' | 'apple' | 'amazon' | 'phenom' | 'oracle' | 'teamtailor' | 'personio' | 'jsonld' | 'sitemap' | 'rendered';
 export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'closed' | 'muted';
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
 export type SourceKind = 'resume' | 'material' | 'decide';
@@ -69,21 +69,23 @@ export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed
 // Where a company the person is aiming at stands: still looking, reading its
 // board directly, found a careers page that cannot be read, or found nothing.
 // Each has a short label for the chip and a sentence that says what it means.
-export const TARGET_STATES: TargetState[] = ["looking", "reading", "found_unreadable", "not_found"];
+export const TARGET_STATES: TargetState[] = ["looking", "reading", "reading_page", "found_unreadable", "not_found"];
 export const TARGET_STATE_LABELS: Record<TargetState, string> = {
   "looking": "Looking for their board",
   "reading": "Reading their board directly",
+  "reading_page": "Reading their careers page",
   "found_unreadable": "Careers page found, can't read it yet",
   "not_found": "Couldn't find where they post"
 };
 export const TARGET_STATE_MEANINGS: Record<TargetState, string> = {
   "looking": "I'm working out where they post roles. It takes a few seconds a company.",
   "reading": "Their roles come straight off their own job board, so nothing they post slips past.",
+  "reading_page": "They have no job board I can read, so I read their careers page itself, as a browser shows it. It catches what the page lists; a role they only post elsewhere can slip past.",
   "found_unreadable": "I found their careers page, but it has no feed I can read automatically. I still look for their roles through search.",
   "not_found": "I couldn't find where they post roles. Point me to their careers page and I'll read it if I can."
 };
 // The boards read directly, and every system named on screen, readable or not.
-export const BOARD_KINDS: BoardKind[] = ["greenhouse", "lever", "ashby", "workday", "eightfold", "jibe", "smartrecruiters", "workable", "recruitee"];
+export const BOARD_KINDS: BoardKind[] = ["greenhouse", "lever", "ashby", "workday", "eightfold", "jibe", "smartrecruiters", "workable", "recruitee", "google", "apple", "amazon", "phenom", "oracle", "teamtailor", "personio", "jsonld", "sitemap", "rendered"];
 export const BOARD_LABELS: Record<string, string> = {
   "greenhouse": "Greenhouse",
   "lever": "Lever",
@@ -104,6 +106,12 @@ export const BOARD_LABELS: Record<string, string> = {
   "bamboohr": "BambooHR",
   "teamtailor": "Teamtailor",
   "personio": "Personio",
+  "google": "Google Careers",
+  "apple": "Apple Jobs",
+  "amazon": "Amazon Jobs",
+  "jsonld": "their careers page",
+  "sitemap": "their careers page",
+  "rendered": "their careers page",
   "own": "their own site"
 };
 // The inbox lists opportunities: one role, one item, however many threads it
