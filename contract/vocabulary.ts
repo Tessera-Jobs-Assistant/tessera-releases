@@ -47,6 +47,14 @@ export type ChangeKind = 'new_entry' | 'entry_fill' | 'new_claim' | 'receipt' | 
 export type ChangeState = 'pending' | 'applied' | 'kept' | 'both' | 'edited' | 'dismissed' | 'stale';
 export type Resolution = 'current' | 'incoming' | 'both' | 'edit';
 export type DecidedVia = 'one' | 'additions' | 'suggested' | 'closed';
+export type ApplicationStage = 'applied' | 'acknowledged' | 'screening' | 'interviewing' | 'offer' | 'rejected' | 'withdrawn' | 'ghosted';
+export type ApplicationOrigin = 'applied' | 'recruiter' | 'referral' | 'imported' | 'other';
+export type InterviewPurpose = 'real' | 'practice';
+export type InterviewSource = 'manual' | 'inbox' | 'loop' | 'seed';
+export type OfferState = 'open' | 'negotiating' | 'accepted' | 'declined' | 'expired';
+export type EquityKind = 'none' | 'rsu' | 'options' | 'other';
+export type ReminderKind = 'custom' | 'follow_up';
+export type AgendaKind = 'interview' | 'offer_deadline' | 'reminder';
 export type SeniorityBand = 'junior_ic' | 'ic' | 'staff' | 'manager' | 'director' | 'vp' | 'svp' | 'c';
 export type Screen = 'today' | 'jobs' | 'pipeline' | 'inbox' | 'coach' | 'experience' | 'resume' | 'stories' | 'growth' | 'preferences' | 'interviews' | 'loops' | 'questions' | 'progress' | 'settings';
 
@@ -227,6 +235,67 @@ export const SEARCH_STATUS_LABELS: Record<SearchStatus, string> = {
   "open": "Open to the right thing",
   "passive": "Not looking, keep an eye out",
   "paused": "Paused"
+};
+// The life of an application. One stage list for the picker, the import and the
+// loop outcome; the loop says `withdrew` where the stage says `withdrawn`, and
+// LOOP_OUTCOME_STAGE is the only place the two words meet.
+export const APPLICATION_STAGES: ApplicationStage[] = ["applied", "acknowledged", "screening", "interviewing", "offer", "rejected", "withdrawn", "ghosted"];
+export const APPLICATION_STAGE_LABELS: Record<ApplicationStage, string> = {
+  "applied": "Applied",
+  "acknowledged": "Acknowledged",
+  "screening": "Screening",
+  "interviewing": "Interviewing",
+  "offer": "Offer",
+  "rejected": "Rejected",
+  "withdrawn": "Withdrawn",
+  "ghosted": "Ghosted"
+};
+export const LOOP_OUTCOME_STAGE: Record<LoopOutcome, ApplicationStage> = {
+  "offer": "offer",
+  "rejected": "rejected",
+  "withdrew": "withdrawn",
+  "ghosted": "ghosted"
+};
+// How a process started. A recruiter-led one does not begin with an application.
+export const APPLICATION_ORIGINS: ApplicationOrigin[] = ["applied", "recruiter", "referral", "imported", "other"];
+export const APPLICATION_ORIGIN_LABELS: Record<ApplicationOrigin, string> = {
+  "applied": "I applied",
+  "recruiter": "A recruiter reached out",
+  "referral": "Referral",
+  "imported": "Imported",
+  "other": "Other"
+};
+// A real interview is a conversation on the calendar; practice is a rehearsal.
+export const INTERVIEW_PURPOSES: InterviewPurpose[] = ["real", "practice"];
+export const INTERVIEW_SOURCES: InterviewSource[] = ["manual", "inbox", "loop", "seed"];
+export const OFFER_STATES: OfferState[] = ["open", "negotiating", "accepted", "declined", "expired"];
+export const OFFER_STATE_LABELS: Record<OfferState, string> = {
+  "open": "Open",
+  "negotiating": "Negotiating",
+  "accepted": "Accepted",
+  "declined": "Declined",
+  "expired": "Expired"
+};
+export const EQUITY_KINDS: EquityKind[] = ["none", "rsu", "options", "other"];
+export const EQUITY_KIND_LABELS: Record<EquityKind, string> = {
+  "none": "No equity",
+  "rsu": "RSUs",
+  "options": "Options",
+  "other": "Other"
+};
+// The currencies an offer form offers first. Any ISO 4217 code is accepted, and
+// nothing is ever converted between them.
+export const COMMON_CURRENCIES: string[] = ["USD", "GBP", "EUR", "CAD", "AUD", "CHF", "SGD", "INR"];
+export const REMINDER_KINDS: ReminderKind[] = ["custom", "follow_up"];
+export const REMINDER_KIND_LABELS: Record<ReminderKind, string> = {
+  "custom": "Reminder",
+  "follow_up": "Follow up"
+};
+export const AGENDA_KINDS: AgendaKind[] = ["interview", "offer_deadline", "reminder"];
+export const AGENDA_KIND_LABELS: Record<AgendaKind, string> = {
+  "interview": "Interview",
+  "offer_deadline": "Offer deadline",
+  "reminder": "Reminder"
 };
 // The band a person is looking within, low to high, and what each is called.
 // The order is a contract: a band's bottom cannot sit above its top.
