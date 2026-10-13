@@ -37,7 +37,7 @@ export type KindBasis = 'stated' | 'read' | 'guessed';
 export type TargetState = 'looking' | 'reading' | 'reading_page' | 'found_unreadable' | 'not_found';
 export type MailHealthState = 'ok' | 'expiring' | 'lapsed' | 'none';
 export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee' | 'google' | 'apple' | 'amazon' | 'phenom' | 'oracle' | 'teamtailor' | 'personio' | 'jsonld' | 'sitemap' | 'rendered';
-export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'closed' | 'muted';
+export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'gone_quiet' | 'closed' | 'muted';
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
 export type LlmFailureReason = 'rate_limited' | 'unavailable' | 'timeout' | 'refused' | 'truncated' | 'bad_request' | 'unreadable' | 'not_configured' | 'budget';
 export type SourceKind = 'resume' | 'material' | 'decide';
@@ -121,15 +121,16 @@ export const BOARD_LABELS: Record<string, string> = {
 };
 // The inbox lists opportunities: one role, one item, however many threads it
 // took. Each is in one of these states, with the words a list row shows.
-export const OPPORTUNITY_STATUSES: OpportunityStatus[] = ["needs_you", "waiting_on_them", "closed", "muted"];
+export const OPPORTUNITY_STATUSES: OpportunityStatus[] = ["needs_you", "waiting_on_them", "gone_quiet", "closed", "muted"];
 export const OPPORTUNITY_STATUS_LABELS: Record<OpportunityStatus, string> = {
   "needs_you": "Needs you",
   "waiting_on_them": "Waiting on them",
+  "gone_quiet": "Gone quiet",
   "closed": "Closed",
   "muted": "Not following"
 };
 // How far back re-assessing the mailbox can read, in days.
-export const REASSESS_WINDOWS: number[] = [30, 60, 90];
+export const REASSESS_WINDOWS: number[] = [7, 14, 30];
 // The named rewrites the reply composer offers. The server holds what each asks for.
 export const REFINE_PRESETS: RefinePreset[] = ["shorter", "warmer", "more_formal", "decline", "ask_details"];
 export const REFINE_PRESET_LABELS: Record<RefinePreset, string> = {
