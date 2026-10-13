@@ -41,10 +41,11 @@ export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'closed' | 'mu
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
 export type SourceKind = 'resume' | 'material' | 'decide';
 export type SourceState = 'read' | 'thin' | 'unreadable';
-export type ChangeSetState = 'reading' | 'ready' | 'done' | 'failed';
+export type ChangeSetState = 'reading' | 'ready' | 'done' | 'dismissed' | 'failed';
 export type ChangeKind = 'new_entry' | 'entry_fill' | 'new_claim' | 'receipt' | 'raw_text' | 'entry_conflict' | 'claim_conflict' | 'story_conflict';
 export type ChangeState = 'pending' | 'applied' | 'kept' | 'both' | 'edited' | 'dismissed' | 'stale';
 export type Resolution = 'current' | 'incoming' | 'both' | 'edit';
+export type DecidedVia = 'one' | 'additions' | 'suggested' | 'closed';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -183,11 +184,13 @@ export const SOURCE_KIND_LABELS: Record<SourceKind, string> = {
 };
 export const SOURCE_KIND_MEANINGS: Record<SourceKind, string> = {
   "resume": "The current word on titles and dates.",
-  "material": "Adds detail and evidence. Doesn't change facts.",
+  "material": "Adds detail, evidence, and entries it states. Doesn't change facts.",
   "decide": "I suggest nothing where it disagrees. You pick each one."
 };
 export const SOURCE_STATES: SourceState[] = ["read", "thin", "unreadable"];
-export const CHANGE_SET_STATES: ChangeSetState[] = ["reading", "ready", "done", "failed"];
+export const CHANGE_SET_STATES: ChangeSetState[] = ["reading", "ready", "done", "dismissed", "failed"];
+// Settled imports stay as a read-only history: finished, closed, or failed.
+export const SETTLED_CHANGE_SET_STATES: ChangeSetState[] = ["done", "dismissed", "failed"];
 // What an import proposes. The first five add to the record; the last three are
 // where a source disagrees with it, and only the person settles those.
 export const CHANGE_KINDS: ChangeKind[] = ["new_entry", "entry_fill", "new_claim", "receipt", "raw_text", "entry_conflict", "claim_conflict", "story_conflict"];
@@ -204,6 +207,13 @@ export const CHANGE_KIND_LABELS: Record<ChangeKind, string> = {
 export const CONFLICT_KINDS: ChangeKind[] = ["entry_conflict", "claim_conflict", "story_conflict"];
 export const CHANGE_STATES: ChangeState[] = ["pending", "applied", "kept", "both", "edited", "dismissed", "stale"];
 export const RESOLUTIONS: Resolution[] = ["current", "incoming", "both", "edit"];
+export const DECIDED_VIA: DecidedVia[] = ["one", "additions", "suggested", "closed"];
+export const DECIDED_VIA_LABELS: Record<DecidedVia, string> = {
+  "one": "Decided by you",
+  "additions": "Added with the other new things",
+  "suggested": "Accepted with all suggested",
+  "closed": "Left out when the import was closed"
+};
 export const SEARCH_STATUS_LABELS: Record<SearchStatus, string> = {
   "active": "Actively looking",
   "open": "Open to the right thing",
