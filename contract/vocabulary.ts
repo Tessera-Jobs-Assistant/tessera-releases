@@ -30,12 +30,14 @@ export type RubricSource = 'tessera_core' | 'reconstructed' | 'official' | 'user
 export type RoleFunction = 'engineering' | 'product' | 'design' | 'data' | 'research' | 'sales' | 'marketing' | 'customer_success' | 'finance' | 'operations' | 'people' | 'legal' | 'medicine' | 'education' | 'creative';
 export type SearchStatus = 'active' | 'open' | 'passive' | 'paused';
 export type OnboardingStep = 'account' | 'preferences' | 'connections' | 'experience' | 'interview' | 'tour';
-export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge' | 'record_sort';
+export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge' | 'record_sort' | 'mail_reassess';
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
 export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'speaking' | 'press' | 'awards' | 'other';
 export type KindBasis = 'stated' | 'read' | 'guessed';
 export type TargetState = 'looking' | 'reading' | 'found_unreadable' | 'not_found';
 export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee';
+export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'closed' | 'muted';
+export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -56,7 +58,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = ["account", "preferences", "co
 export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "paused"];
 // Work that outlives the request: a client polls /tasks/{id} and renders the
 // status. These are the kinds it can ask for and the words it will see.
-export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort"];
+export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort", "mail_reassess"];
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
 // Where a company the person is aiming at stands: still looking, reading its
 // board directly, found a careers page that cannot be read, or found nothing.
@@ -97,6 +99,26 @@ export const BOARD_LABELS: Record<string, string> = {
   "teamtailor": "Teamtailor",
   "personio": "Personio",
   "own": "their own site"
+};
+// The inbox lists opportunities: one role, one item, however many threads it
+// took. Each is in one of these states, with the words a list row shows.
+export const OPPORTUNITY_STATUSES: OpportunityStatus[] = ["needs_you", "waiting_on_them", "closed", "muted"];
+export const OPPORTUNITY_STATUS_LABELS: Record<OpportunityStatus, string> = {
+  "needs_you": "Needs you",
+  "waiting_on_them": "Waiting on them",
+  "closed": "Closed",
+  "muted": "Not following"
+};
+// How far back re-assessing the mailbox can read, in days.
+export const REASSESS_WINDOWS: number[] = [30, 60, 90];
+// The named rewrites the reply composer offers. The server holds what each asks for.
+export const REFINE_PRESETS: RefinePreset[] = ["shorter", "warmer", "more_formal", "decline", "ask_details"];
+export const REFINE_PRESET_LABELS: Record<RefinePreset, string> = {
+  "shorter": "Shorter",
+  "warmer": "Warmer",
+  "more_formal": "More formal",
+  "decline": "Decline politely",
+  "ask_details": "Ask for details"
 };
 export function targetStateOf(state: string | undefined): TargetState {
   return (TARGET_STATES as string[]).includes(state ?? '') ? (state as TargetState) : 'looking';
