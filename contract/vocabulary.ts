@@ -39,6 +39,7 @@ export type MailHealthState = 'ok' | 'expiring' | 'lapsed' | 'none';
 export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee' | 'google' | 'apple' | 'amazon' | 'phenom' | 'oracle' | 'teamtailor' | 'personio' | 'jsonld' | 'sitemap' | 'rendered';
 export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'closed' | 'muted';
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
+export type LlmFailureReason = 'rate_limited' | 'unavailable' | 'timeout' | 'refused' | 'truncated' | 'bad_request' | 'unreadable' | 'not_configured' | 'budget';
 export type SourceKind = 'resume' | 'material' | 'decide';
 export type SourceState = 'read' | 'thin' | 'unreadable';
 export type ChangeSetState = 'reading' | 'ready' | 'done' | 'dismissed' | 'failed';
@@ -138,6 +139,10 @@ export const REFINE_PRESET_LABELS: Record<RefinePreset, string> = {
   "decline": "Decline politely",
   "ask_details": "Ask for details"
 };
+// The `reason` on a 503 from an endpoint that needed a language model, and on
+// `unavailable` where a reply says the model did not answer. The 503's `detail` is
+// the sentence to show. `budget` and `not_configured` do not clear by retrying.
+export const LLM_FAILURE_REASONS: LlmFailureReason[] = ["rate_limited", "unavailable", "timeout", "refused", "truncated", "bad_request", "unreadable", "not_configured", "budget"];
 export function targetStateOf(state: string | undefined): TargetState {
   return (TARGET_STATES as string[]).includes(state ?? '') ? (state as TargetState) : 'looking';
 }
