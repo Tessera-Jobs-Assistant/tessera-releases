@@ -30,7 +30,7 @@ export type RubricSource = 'tessera_core' | 'reconstructed' | 'official' | 'user
 export type RoleFunction = 'engineering' | 'product' | 'design' | 'data' | 'research' | 'sales' | 'marketing' | 'customer_success' | 'finance' | 'operations' | 'people' | 'legal' | 'medicine' | 'education' | 'creative';
 export type SearchStatus = 'active' | 'open' | 'passive' | 'paused';
 export type OnboardingStep = 'account' | 'preferences' | 'connections' | 'experience' | 'interview' | 'tour';
-export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge' | 'record_sort' | 'mail_reassess' | 'record_intake';
+export type TaskKind = 'story_suggest' | 'scout' | 'spine_import' | 'resolve_targets' | 'record_merge' | 'record_sort' | 'mail_reassess' | 'record_intake' | 'data_export';
 export type TaskStatus = 'queued' | 'running' | 'done' | 'failed';
 export type EventKind = 'work' | 'volunteer' | 'project' | 'board_advisory' | 'education' | 'research' | 'speaking' | 'press' | 'awards' | 'other';
 export type KindBasis = 'stated' | 'read' | 'guessed';
@@ -67,7 +67,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = ["account", "preferences", "co
 export const SEARCH_STATUSES: SearchStatus[] = ["active", "open", "passive", "paused"];
 // Work that outlives the request: a client polls /tasks/{id} and renders the
 // status. These are the kinds it can ask for and the words it will see.
-export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort", "mail_reassess", "record_intake"];
+export const TASK_KINDS: TaskKind[] = ["story_suggest", "scout", "spine_import", "resolve_targets", "record_merge", "record_sort", "mail_reassess", "record_intake", "data_export"];
 export const TASK_STATUSES: TaskStatus[] = ["queued", "running", "done", "failed"];
 // Whether the mailbox is still being read. The app warns on expiring and lapsed.
 export const MAIL_HEALTH_STATES: MailHealthState[] = ["ok", "expiring", "lapsed", "none"];
