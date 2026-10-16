@@ -20,6 +20,7 @@ export type Ladder = 'ic' | 'manager' | 'executive';
 export type Seniority = 'junior' | 'mid' | 'senior' | 'staff' | 'principal' | 'director' | 'vp_plus';
 export type LoopState = 'upcoming' | 'in_progress' | 'done';
 export type LoopOutcome = 'offer' | 'rejected' | 'withdrew' | 'ghosted';
+export type PipelineView = 'list' | 'schedule' | 'offers';
 export type RoleInLoop = 'recruiter' | 'hiring_manager' | 'peer' | 'skip' | 'bar_raiser' | 'cross_functional' | 'unknown';
 export type ResearchState = 'never' | 'queued' | 'running' | 'done' | 'failed';
 export type CompanyFactKind = 'process' | 'round_format' | 'values' | 'vernacular' | 'recency_expectation' | 'rubric_hint' | 'question' | 'culture' | 'recent_news' | 'tech_stack' | 'comp_signal';
@@ -63,7 +64,7 @@ export type EquityKind = 'none' | 'rsu' | 'options' | 'other';
 export type ReminderKind = 'custom' | 'follow_up';
 export type AgendaKind = 'interview' | 'offer_deadline' | 'reminder';
 export type SeniorityBand = 'junior_ic' | 'ic' | 'staff' | 'manager' | 'director' | 'vp' | 'svp' | 'c';
-export type Screen = 'today' | 'jobs' | 'pipeline' | 'inbox' | 'coach' | 'experience' | 'resume' | 'stories' | 'growth' | 'preferences' | 'processes' | 'documents' | 'interviews' | 'loops' | 'questions' | 'progress' | 'settings';
+export type Screen = 'today' | 'jobs' | 'pipeline' | 'inbox' | 'coach' | 'experience' | 'resume' | 'stories' | 'growth' | 'preferences' | 'documents' | 'practice' | 'questions' | 'progress' | 'settings';
 
 export const CORE_SIGNALS: CoreSignal[] = ["Ownership and results", "Leadership and influence", "Conflict and disagreement", "Ambiguity and judgment", "Learning and growth", "Communication", "Collaboration", "Customer and user focus", "Technical depth"];
 export const STORY_STATES: StoryState[] = ["draft", "rehearsed", "battle_tested"];
@@ -367,13 +368,18 @@ export const SCREEN_LABELS: Record<Screen, string> = {
   "stories": "Stories",
   "growth": "Growth",
   "preferences": "Search preferences",
-  "processes": "Interviews",
   "documents": "Documents",
-  "interviews": "Schedule",
-  "loops": "Loops",
+  "practice": "Practice",
   "questions": "Questions",
   "progress": "Progress",
   "settings": "Settings"
+};
+// Pipeline's views: the processes, every round across them, and the offers.
+export const PIPELINE_VIEWS: PipelineView[] = ["list", "schedule", "offers"];
+export const PIPELINE_VIEW_LABELS: Record<PipelineView, string> = {
+  "list": "List",
+  "schedule": "Schedule",
+  "offers": "Offers"
 };
 export const FUNCTION_LABELS: Record<string, string> = {
   "engineering": "Engineering",
