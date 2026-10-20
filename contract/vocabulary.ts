@@ -46,7 +46,7 @@ export type LlmFailureReason = 'rate_limited' | 'unavailable' | 'timeout' | 'ref
 export type SourceKind = 'resume' | 'material' | 'decide';
 export type SourceState = 'read' | 'thin' | 'unreadable';
 export type ChangeSetState = 'reading' | 'ready' | 'done' | 'dismissed' | 'failed';
-export type ChangeKind = 'new_entry' | 'entry_fill' | 'new_claim' | 'receipt' | 'raw_text' | 'entry_conflict' | 'claim_conflict' | 'story_conflict';
+export type ChangeKind = 'new_entry' | 'entry_fill' | 'new_claim' | 'receipt' | 'raw_text' | 'entry_conflict' | 'claim_conflict' | 'story_conflict' | 'claim_retire' | 'new_story' | 'story_tag' | 'interview_debrief' | 'new_question' | 'new_job' | 'application_stage' | 'new_target' | 'loop_note';
 export type ChangeState = 'pending' | 'applied' | 'kept' | 'both' | 'edited' | 'dismissed' | 'stale';
 export type Resolution = 'current' | 'incoming' | 'both' | 'edit';
 export type DecidedVia = 'one' | 'additions' | 'suggested' | 'closed';
@@ -255,7 +255,7 @@ export const CHANGE_SET_STATES: ChangeSetState[] = ["reading", "ready", "done", 
 export const SETTLED_CHANGE_SET_STATES: ChangeSetState[] = ["done", "dismissed", "failed"];
 // What an import proposes. The first five add to the record; the last three are
 // where a source disagrees with it, and only the person settles those.
-export const CHANGE_KINDS: ChangeKind[] = ["new_entry", "entry_fill", "new_claim", "receipt", "raw_text", "entry_conflict", "claim_conflict", "story_conflict"];
+export const CHANGE_KINDS: ChangeKind[] = ["new_entry", "entry_fill", "new_claim", "receipt", "raw_text", "entry_conflict", "claim_conflict", "story_conflict", "claim_retire", "new_story", "story_tag", "interview_debrief", "new_question", "new_job", "application_stage", "new_target", "loop_note"];
 export const CHANGE_KIND_LABELS: Record<ChangeKind, string> = {
   "new_entry": "New entry",
   "entry_fill": "Fills a gap",
@@ -264,9 +264,18 @@ export const CHANGE_KIND_LABELS: Record<ChangeKind, string> = {
   "raw_text": "Source text",
   "entry_conflict": "Disagrees with your record",
   "claim_conflict": "Disagrees with a claim",
-  "story_conflict": "Disagrees with a story"
+  "story_conflict": "Disagrees with a story",
+  "claim_retire": "Would retire a claim",
+  "new_story": "New story",
+  "story_tag": "Story signals",
+  "interview_debrief": "How an interview went",
+  "new_question": "Interview question",
+  "new_job": "Job to add",
+  "application_stage": "Application stage",
+  "new_target": "Company to watch",
+  "loop_note": "Note on a process"
 };
-export const CONFLICT_KINDS: ChangeKind[] = ["entry_conflict", "claim_conflict", "story_conflict"];
+export const CONFLICT_KINDS: ChangeKind[] = ["entry_conflict", "claim_conflict", "story_conflict", "claim_retire", "application_stage"];
 export const CHANGE_STATES: ChangeState[] = ["pending", "applied", "kept", "both", "edited", "dismissed", "stale"];
 export const RESOLUTIONS: Resolution[] = ["current", "incoming", "both", "edit"];
 export const DECIDED_VIA: DecidedVia[] = ["one", "additions", "suggested", "closed"];
