@@ -21,6 +21,7 @@ export type Seniority = 'junior' | 'mid' | 'senior' | 'staff' | 'principal' | 'd
 export type LoopState = 'upcoming' | 'in_progress' | 'done';
 export type LoopOutcome = 'offer' | 'rejected' | 'withdrew' | 'ghosted';
 export type PipelineView = 'list' | 'schedule' | 'offers';
+export type TurnAct = 'question' | 'follow_up' | 'clarifies' | 'incomplete' | 'remark' | 'answer' | 'asks_back' | 'backchannel';
 export type RoleInLoop = 'recruiter' | 'hiring_manager' | 'peer' | 'skip' | 'bar_raiser' | 'cross_functional' | 'unknown';
 export type ResearchState = 'never' | 'queued' | 'running' | 'done' | 'failed';
 export type CompanyFactKind = 'process' | 'round_format' | 'values' | 'vernacular' | 'recency_expectation' | 'rubric_hint' | 'question' | 'culture' | 'recent_news' | 'tech_stack' | 'comp_signal';
@@ -415,7 +416,20 @@ export const SCORE_LABELS: Record<string, string> = {"1": "Poor", "2": "Mixed", 
 // The three states a live-assist card can be in. A rehearsed story is one the
 // user has built and practised; a true story is composed from a claim on the
 // spot; a gap card bridges honestly without claiming.
-export const CARD_LABELS = {"rehearsed": "YOUR REHEARSED STORY", "story": "YOUR TRUE STORY", "gap_bridge": "GAP · BRIDGE, DON'T CLAIM"} as const;
+export const CARD_LABELS = {"rehearsed": "YOUR REHEARSED STORY", "story": "YOUR TRUE STORY", "gap_bridge": "GAP · BRIDGE, DON'T CLAIM", "follow_up": "FOLLOW-UP · SAME STORY", "direct": "ANSWER DIRECTLY"} as const;
+// What live assist read a stretch of speech as doing, and what the panel's
+// status line calls it. Only question, follow_up and clarifies put a hint up.
+export const TURN_ACTS: TurnAct[] = ["question", "follow_up", "clarifies", "incomplete", "remark", "answer", "asks_back", "backchannel"];
+export const TURN_ACT_LABELS: Record<TurnAct, string> = {
+  "question": "They asked",
+  "follow_up": "They're following up",
+  "clarifies": "They clarified",
+  "incomplete": "They're still asking",
+  "remark": "They're talking",
+  "answer": "You're answering",
+  "asks_back": "You asked them",
+  "backchannel": "Listening"
+};
 
 // What a rubric's provenance is called on screen, and what it means. A client
 // display map for a server enum is how one vocabulary becomes two, so both
