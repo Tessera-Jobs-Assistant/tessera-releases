@@ -417,7 +417,7 @@ export const SCORE_LABELS: Record<string, string> = {"1": "Poor", "2": "Mixed", 
 // The three states a live-assist card can be in. A rehearsed story is one the
 // user has built and practised; a true story is composed from a claim on the
 // spot; a gap card bridges honestly without claiming.
-export const CARD_LABELS = {"rehearsed": "YOUR REHEARSED STORY", "story": "YOUR TRUE STORY", "gap_bridge": "GAP · BRIDGE, DON'T CLAIM", "follow_up": "FOLLOW-UP · SAME STORY", "direct": "ANSWER DIRECTLY"} as const;
+export const CARD_LABELS = {"rehearsed": "YOUR REHEARSED STORY", "story": "YOUR TRUE STORY", "gap_bridge": "GAP · BRIDGE, DON'T CLAIM", "follow_up": "FOLLOW-UP · SAME STORY", "direct": "ANSWER DIRECTLY", "clarify": "ASK THEM TO CLARIFY"} as const;
 // What live assist read a stretch of speech as doing, and what the panel's
 // status line calls it. Only question, follow_up and clarifies put a hint up.
 export const TURN_ACTS: TurnAct[] = ["question", "follow_up", "clarifies", "incomplete", "remark", "answer", "asks_back", "backchannel"];
