@@ -41,7 +41,7 @@ export type MailHealthState = 'ok' | 'expiring' | 'lapsed' | 'none';
 export type BoardKind = 'greenhouse' | 'lever' | 'ashby' | 'workday' | 'eightfold' | 'jibe' | 'smartrecruiters' | 'workable' | 'recruitee' | 'google' | 'apple' | 'amazon' | 'phenom' | 'oracle' | 'teamtailor' | 'personio' | 'jsonld' | 'sitemap' | 'rendered';
 export type OpportunityStatus = 'needs_you' | 'waiting_on_them' | 'gone_quiet' | 'closed' | 'muted';
 export type RefinePreset = 'shorter' | 'warmer' | 'more_formal' | 'decline' | 'ask_details';
-export type JobReviewState = 'unconfirmed' | 'dismissed' | 'archived';
+export type JobReviewState = 'unconfirmed' | 'dismissed' | 'archived' | 'removed';
 export type JobOrigin = 'scout' | 'email_alert' | 'email_recruiter' | 'suggested' | 'manual' | 'imported';
 export type LlmFailureReason = 'rate_limited' | 'unavailable' | 'timeout' | 'refused' | 'truncated' | 'bad_request' | 'unreadable' | 'not_configured' | 'budget';
 export type SourceKind = 'resume' | 'material' | 'decide';
@@ -169,12 +169,13 @@ export const REFINE_PRESET_LABELS: Record<RefinePreset, string> = {
   "ask_details": "Ask for details"
 };
 // Where a job stands when it is not simply on the list (""): waiting in review,
-// said no to, or taken off by a recheck.
-export const JOB_REVIEW_STATES: JobReviewState[] = ["unconfirmed", "dismissed", "archived"];
+// said no to, taken off by a recheck, or taken off by the person.
+export const JOB_REVIEW_STATES: JobReviewState[] = ["unconfirmed", "dismissed", "archived", "removed"];
 export const JOB_REVIEW_LABELS: Record<JobReviewState, string> = {
   "unconfirmed": "To review",
   "dismissed": "You said no",
-  "archived": "Taken off after a recheck"
+  "archived": "Taken off after a recheck",
+  "removed": "You took it off your list"
 };
 // Where a job came from, as the Jobs filter names each source. Those in
 // JOB_ORIGINS_REVIEWED_FIRST wait in review before reaching the list; what the
